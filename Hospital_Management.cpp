@@ -1,55 +1,86 @@
-#include<iostream>
+#include <iostream>
+#include <string>
 using namespace std;
-
+class Patient; // Forward declaration
+class Hospital
+{
+public:
+    void displayPatientID(const Patient& p);
+};
 class Patient
 {
-    private:
+private:
     string name;
     int patientID;
     int age;
     string disease;
+    static int patientCount;
 
-    public:
-    Patient(string n, int id, int a, string d)
+public:
+    // Constructor using this pointer
+    Patient(string name, int patientID, int age, string disease)
     {
-        name = n;
-        patientID = id;
-        age = a;
-        disease = d;
+        this->name = name;
+        this->patientID = patientID;
+        this->age = age;
+        this->disease = disease;
 
-        cout<<endl<<"Patient record created."<<endl;
+        patientCount++;
+        cout << "Patient record created." << endl;  
     }
-
-    void displayDetails() 
+    // Inline member function
+    inline void displayDetails()
     {
-        cout<<"\n--- Patient Details ---"<<endl;
-        cout<<"Patient Name: "<<name<<endl;
-        cout<<"Patient ID: "<<patientID<<endl;
-        cout<<"Age: "<<age<<endl;
-        cout<<"Disease: "<<disease<<endl;
+        cout << "\nPatient Details" << endl;
+        cout << "Patient Name: " << name << endl;
+        cout << "Patient ID: " << patientID << endl;
+        cout << "Age: " << age << endl;
+        cout << "Disease: " << disease << endl;
     }
-
-    void updateDiseade(string newDisease)
+    // Update disease information using this pointer
+    void updateDisease(string newDisease)
     {
-        disease = newDisease;
-        cout<<"\nDisease information updated."<<endl;
+        this->disease = newDisease;
+        cout << "\nDisease information updated." << endl;
     }
-
+    // Static member function
+    static void displayPatientCount()
+    {
+        cout << "\nTotal patient records created: "
+             << patientCount << endl;
+    }
+    // Friend class declaration
+    friend class Hospital;
+    // Destructor
     ~Patient()
     {
-        cout<<"\nPatient object destroyedd."<<endl;
-        cout<<endl;
+        cout << "\nPatient object destroyed." << endl;
+        patientCount--;
     }
 };
-
-int main () {
-    Patient p1("Rahul",101,25,"Fever");
+// Definition of static data member
+int Patient::patientCount = 0;
+// Friend class accessing private data
+void Hospital::displayPatientID(const Patient& p)
+{
+    cout << "\nAccessing private data through friend class:"
+         << endl;
+    cout << "Patient Name: " << p.name << endl;
+    cout << "Patient ID: " << p.patientID << endl;
+}
+int main()
+{
+    Patient p1("Rahul", 101, 25, "Fever");
 
     p1.displayDetails();
 
-    p1.updateDiseade("Viral fever");
-
+    p1.updateDisease("Viral fever");
     p1.displayDetails();
+
+    Patient::displayPatientCount();
+
+    Hospital h1;
+    h1.displayPatientID(p1);
 
     return 0;
 }
