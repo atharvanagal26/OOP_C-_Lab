@@ -1,6 +1,5 @@
 #include<iostream>
 using namespace std;
-
 class Person
 {
     public:
@@ -9,7 +8,6 @@ class Person
         cout<<"Genaral person details"<<endl;
     }
 };
-
 class Doctor:public Person
 {
     public:
@@ -18,7 +16,6 @@ class Doctor:public Person
         cout<<"Doctor: Treats patients"<<endl;
     }
 };
-
 class Nurse:public Person
 {
     public:
@@ -27,7 +24,6 @@ class Nurse:public Person
         cout<<"Nurse: Takes care of patients"<<endl;
     }
 };
-
 class Patient:public Person
 {
     public:
