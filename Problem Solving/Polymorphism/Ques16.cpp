@@ -1,15 +1,12 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 class EmployeeBase {
 protected:
     int id;
     string name;
-
 public:
     EmployeeBase(int empId, string empName) : id(empId), name(empName) {}
-
     void displayBaseInfo() const {
         cout << "Employee ID   : " << id << "\n";
         cout << "Employee Name : " << name << "\n";
@@ -22,13 +19,11 @@ protected:
 public:
     PersonalRecord(int id, string name, string addr, string ph) 
         : EmployeeBase(id, name), address(addr), phone(ph) {}
-
     void displayPersonalInfo() const {
         cout << "Address       : " << address << "\n";
         cout << "Phone         : " << phone << "\n";
     }
 };
-
 class ProfessionalRecord : virtual public EmployeeBase {
 protected:
     string department;
@@ -47,7 +42,6 @@ public:
         : EmployeeBase(id, name), // Directly invokes virtual base constructor
           PersonalRecord(id, name, addr, ph),
           ProfessionalRecord(id, name, dept, sal) {}
-
     void displayCompleteRecord() const {
         cout << "       COMPLETE EMPLOYEE DATABASE       \n";
         displayBaseInfo();         // Pulled from the single, shared EmployeeBase instance
@@ -55,7 +49,6 @@ public:
         displayProfessionalInfo(); // Professional branch details
     }
 };
-
 int main() {
     CompleteEmployeeRecord emp(
         101, 

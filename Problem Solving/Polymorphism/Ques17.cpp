@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 class Order {
 protected:
     string trackingNumber;
@@ -28,16 +27,13 @@ public:
         return 5.00 + (weightKg * 2.00);
     }
 };
-
 class ExpressOrder : public Order {
 public:
     ExpressOrder(string tracking, double weight) : Order(tracking, weight) {}
-
     double calculateShippingCost() override {
         return 15.00 + (weightKg * 4.50);
     }
 };
-
 int main() {
     Order* order1 = new StandardOrder("TRK-101", 3.0);
     Order* order2 = new ExpressOrder("TRK-202", 1.5);

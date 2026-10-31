@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 class Character {
 protected:
     string name;
@@ -36,7 +35,6 @@ int main() {
     Character* party[2];
     party[0] = new Warrior("Aragorn", 120);
     party[1] = new Mage("Gandalf", 80);
-
     cout << "    Executing Polymorphic Attacks via Base Pointers    \n";
     for (int i = 0; i < 2; i++) {
         party[i]->attack(); 

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 class Person {
 protected:
     string name;
@@ -23,7 +22,6 @@ class Professional : virtual public Person {
 protected:
     double basicSalary;
     double allowance;
-
 public:
     void getProfessionalData() {
         cout << "Enter Basic Salary: ";
@@ -55,7 +53,6 @@ public:
 };
 class EmployeeRecord : public Professional, public Experience {
     double totalSalary;
-
 public:
     void getEmployeeData() {
         cout << "Enter Employee Details\n";
@@ -72,11 +69,9 @@ public:
         cout << "Total Salary  : $" << totalSalary << "\n";
     }
 };
-
 int main() {
     EmployeeRecord emp;
         emp.getEmployeeData();
     emp.displayEmployeeRecord();
-
     return 0;
 }

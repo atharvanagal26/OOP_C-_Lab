@@ -1,18 +1,14 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 class DocumentExporter {
 protected:
     string fileName;
-
 public:
     DocumentExporter(string name) {
         fileName = name;
     }
-
     virtual void exportData(const string& content) = 0;
-
     void displayFileInfo() {
         cout << "[System] Preparing to write target file: " << fileName << "\n";
     }
@@ -23,23 +19,19 @@ public:
 class PdfExporter : public DocumentExporter {
 public:
     PdfExporter(string name) : DocumentExporter(name) {}
-
     void exportData(const string& content) override {
         cout << "Formatting content into PDF layout...\n";
         cout << "Successfully exported to '" << fileName << ".pdf' with content: [" << content << "]\n";
     }
 };
-
 class CsvExporter : public DocumentExporter {
 public:
     CsvExporter(string name) : DocumentExporter(name) {}
-
     void exportData(const string& content) override {
         cout << "Formatting content into comma-separated values (CSV)...\n";
         cout << "Successfully exported to '" << fileName << ".csv' with content: [" << content << "]\n";
     }
 };
-
 int main() {
     DocumentExporter* pdfWriter = new PdfExporter("Annual_Report");
     DocumentExporter* csvWriter = new CsvExporter("Sales_Data");
@@ -51,6 +43,5 @@ int main() {
     cout << "\n    Cleaning Up Resources    \n";
     delete pdfWriter;
     delete csvWriter;
-
     return 0;
 }

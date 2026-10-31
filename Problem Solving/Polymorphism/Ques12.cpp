@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 class Person {
 protected:
     string name;
-
 public:
     void setName(string n) {
         name = n;
