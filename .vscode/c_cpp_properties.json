@@ -12,7 +12,7 @@
             ],
             "compilerPath": "D:\\C&CPP Files\\bin\\gcc.exe",
             "cStandard": "c11",
-            "cppStandard": "c++17",
+            "cppStandard": "c++11",
             "intelliSenseMode": "windows-gcc-x86"
         }
     ],
